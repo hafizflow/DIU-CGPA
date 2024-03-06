@@ -1,3 +1,6 @@
+import 'package:diu_cgpa_provider/controllers/student_info_controller.dart';
+import 'package:diu_cgpa_provider/controllers/student_sgpa_controller.dart';
+import 'package:diu_cgpa_provider/result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,11 +21,17 @@ class DiuCoverPageApp extends StatelessWidget {
         ChangeNotifierProvider<SemesterListController>(
           create: (context) => SemesterListController(),
         ),
+        ChangeNotifierProvider<StudentInfoController>(
+          create: (context) => StudentInfoController(),
+        ),
+        ChangeNotifierProvider<StudentSgpaController>(
+          create: (context) => StudentSgpaController(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(useMaterial3: false),
-        home: const HomeScreen(),
+        home: const ResultScreen(),
       ),
     );
   }

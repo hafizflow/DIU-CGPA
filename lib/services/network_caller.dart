@@ -15,13 +15,13 @@ class NetworkCaller {
       return ResponseData(
         isSuccess: true,
         statusCode: response.statusCode,
-        response: decodeResponse,
+        responseData: decodeResponse,
       );
     } else {
       return ResponseData(
         isSuccess: false,
         statusCode: response.statusCode,
-        response: '',
+        responseData: '',
       );
     }
   }

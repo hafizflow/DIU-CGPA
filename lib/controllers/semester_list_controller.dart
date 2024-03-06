@@ -12,22 +12,23 @@ class SemesterListController extends ChangeNotifier {
   bool isLoading = true;
   String error = '';
   SemesterList semesterList = SemesterList();
-  List<int> semesterCode = [];
+  List<dynamic> semesterCode = [];
 
-  getSemesterList() async {
+  Future<void> getSemesterList() async {
     try {
       Response response = await http.get(Uri.parse(Urls.semesterList));
       if (response.statusCode == 200) {
+        // List<dynamic> jsonData = jsonDecode(response.body);
+
+        semesterList = SemesterList.fromJson(jsonDecode(response.body)[0]);
+
+        // semesterCode = jsonData
+        //     .map((semester) => int.parse(semester['semesterId']))
+        //     .toList();
+
         // log(response.body);
-        // semesterList = SemesterList.fromJson(jsonDecode(response.body)[0]);
-
-        List<dynamic> jsonData = jsonDecode(response.body);
-
-        semesterCode = jsonData
-            .map((semester) => int.parse(semester['semesterId']))
-            .toList();
-
-        log(semesterCode.toString());
+        // log(semesterCode.toString());
+        log(semesterList.toString());
       }
     } catch (e) {
       log(e.toString());
